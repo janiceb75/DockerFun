@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: dockerbuild
-      run: docker build . --file Dockerfile --tag python-docker:$(date +%s)
+      run: docker build . --file Dockerfile --tag $USERNAME/python-docker:latest
