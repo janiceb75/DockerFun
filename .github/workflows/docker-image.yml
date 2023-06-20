@@ -20,3 +20,5 @@ jobs:
       run: docker login --username ${{secrets.USERNAME}} --password ${{secrets.PASSWORD}}
     - name: dockerpush
       run: docker push ${{secrets.USERNAME}}/python-docker:latest
+    - name: dockerun
+      run: ssh -i "${{secrets.PEM}}" ubuntu@ec2-44-204-5-216.compute-1.amazonaws.com docker run -d -p 5000:5000 --name pythonapp5 janiceb/python-docker
