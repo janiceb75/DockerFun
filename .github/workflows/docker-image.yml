@@ -21,4 +21,7 @@ jobs:
     - name: dockerpush
       run: docker push ${{secrets.USERNAME}}/python-docker:latest
     - name: dockerun
-      run: ssh -i ${{secrets.PEM}} -o "StrictHostKeyChecking no" ubuntu@ec2-44-204-5-216.compute-1.amazonaws.com docker run -d -p 5000:5000 --name pythonapp5 janiceb/python-docker
+      run: |
+          echo "$PEM" > aws.pem
+          chmod 400 aws.pem
+          ssh -i aws.pem -o "StrictHostKeyChecking no" ubuntu@ec2-44-204-5-216.compute-1.amazonaws.com docker run -d -p 5000:5000 --name pythonapp5 janiceb/python-docker
